@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    namespace 'com.xaivision.scorapp'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId 'com.xaivision.scorapp'
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_compiler
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.9.0'
+
+    api coreDependencies.androidCore
+    api coreDependencies.composeUi
+    api coreDependencies.composePreview
+    api coreDependencies.composeNavigation
+    api coreDependencies.composeMaterial
+    api coreDependencies.lottieCompose
+    api coreDependencies.googleMaterial
+
+    api coreDependencies.appCompat
+    api coreDependencies.viewModelCompose
+    api coreDependencies.lifecycle
+    api coreDependencies.activityCompose
+
+
+    //Hilt
+    implementation coreDependencies.hiltNavCompose
+    implementation coreDependencies.hiltAndroid
+    kapt coreDependencies.kaptHiltCompiler
+    kapt coreDependencies.hiltAndroidCompiler
+
+    //Orbit
+    api coreDependencies.orbitViewModel
+    api coreDependencies.orbitCore
+
+    implementation coreDependencies.accompanisSystemUiController
+    implementation coreDependencies.accompanistShimerPlaceholder
+    implementation coreDependencies.accompanistNavigationAnimation
+    implementation coreDependencies.accompanistPager
+
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

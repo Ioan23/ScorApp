@@ -1,0 +1,89 @@
+buildscript {
+    ext {
+        min_api_level = 23
+        compile_api_level = 33
+        target_api_level = 33
+        appcompat_version = '1.5.1'
+        compose_version = '1.2.1'
+        compose_compiler = '1.3.1'
+        nav_version = '2.5.2'
+        viewmodel_compose_version = '2.5.1'
+        ktx_version = '1.9.0'
+        lifecycle_version = '2.5.1'
+        activity_compose_version = '1.6.0'
+        orbit_version = '4.4.0'
+        hilt_version = '2.44'
+        android_hilt_compiler = '1.0.0'
+        hilt_nav_compose_version = "1.0.0"
+        coroutines_version = '1.6.4'
+        lottieVersion = '5.2.0'
+        material_version = '1.6.1'
+        navigation_version = '2.3.5'
+        app_cache_version = '4.0.5'
+        data_store_vertion = '1.0.0'
+        kotlin_serialization_version = '1.4.30'
+        kotlin_json_serialization_version = '1.4.0'
+        timber_version = '5.0.1'
+        appolo2_version = '2.5.9'
+        appolo_version = '3.6.0'
+        okhttp3_version = '5.0.0-alpha.10'
+        coil_version = '2.2.1'
+        room_database_version = '2.4.3'
+        kotlin_gradle_version = '1.6.0'
+        gson_version = '2.9.1'
+        accompanist_version = '0.23.1'
+        datastore_version = '1.0.0'
+
+        coreDependencies = [
+                appCompat                     : "androidx.appcompat:appcompat:$appcompat_version",
+                androidCore                   : "androidx.core:core-ktx:$ktx_version",
+                composeUi                     : "androidx.compose.ui:ui:$compose_version",
+                composePreview                : "androidx.compose.ui:ui-tooling-preview:$compose_version",
+
+                composeMaterial               : "androidx.compose.material:material:$compose_version",
+                composeNavigation             : "androidx.navigation:navigation-ui-ktx:$nav_version",
+                viewModelCompose              : "androidx.lifecycle:lifecycle-viewmodel-compose:$viewmodel_compose_version",
+                googleMaterial                : "com.google.android.material:material:$material_version",
+                activityCompose               : "androidx.activity:activity-compose:$activity_compose_version",
+                lifecycle                     : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+                orbitViewModel                : "org.orbit-mvi:orbit-viewmodel:$orbit_version",
+                orbitCore                     : "org.orbit-mvi:orbit-core:$orbit_version",
+                hiltCompiler                  : "com.google.dagger:hilt-android-compiler:$hilt_version",
+
+                hiltAndroidCompiler           : "androidx.hilt:hilt-compiler:$android_hilt_compiler",
+
+                hiltAndroid                   : "com.google.dagger:hilt-android:$hilt_version",
+
+                hiltNavCompose                : "androidx.hilt:hilt-navigation-compose:$hilt_nav_compose_version",
+
+                kaptHiltCompiler              : "com.google.dagger:hilt-android-compiler:$hilt_version",
+
+                coroutines                    : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
+                coroutinesCore                : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+                lottieCompose                 : "com.airbnb.android:lottie-compose:$lottieVersion",
+                appCache                      : "com.dropbox.mobile.store:cache4:$app_cache_version",
+                dataStore                     : "androidx.datastore:datastore-preferences:$data_store_vertion",
+                kotlinSerialization           : "org.jetbrains.kotlin:kotlin-serialization:$kotlin_serialization_version",
+                kotlinJsonSerialization       : "org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlin_json_serialization_version",
+                kotlinGradle                  : "org.jetbrains.kotlin:kotlin-gradle-plugin$kotlin_gradle_version",
+                timber                        : "com.jakewharton.timber:timber:$timber_version",
+                appoloRuntime                 : "com.apollographql.apollo3:apollo-runtime:$appolo_version",
+                appoloNormalizedCache         : "com.apollographql.apollo3:apollo-normalized-cache:$appolo_version",
+                appolo2Coroutines             : "com.apollographql.apollo:apollo-coroutines-support:$appolo2_version",
+                appolo2Runtime                : "com.apollographql.apollo:apollo-runtime:$appolo2_version",
+                okHttp                        : "com.squareup.okhttp3:okhttp:$okhttp3_version",
+                okHttpInteractor              : "com.squareup.okhttp3:logging-interceptor:$okhttp3_version",
+                coil                          : "io.coil-kt:coil-compose:$coil_version",
+                roomRuntime                   : "androidx.room:room-runtime:$room_database_version",
+                roomCompiler                  : "androidx.room:room-compiler:$room_database_version",
+                roomKtx                        : "androidx.room:room-ktx:$room_database_version",
+                accompanisSystemUiController  : "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version",
+                accompanistShimerPlaceholder  : "com.google.accompanist:accompanist-placeholder-material:$accompanist_version",
+                accompanistNavigationAnimation: "com.google.accompanist:accompanist-navigation-animation:$accompanist_version",
+                accompanistPager              : "com.google.accompanist:accompanist-pager:$accompanist_version",
+                gson                          : "com.google.code.gson:gson:$gson_version",
+                datastore                   : "androidx.datastore:datastore-preferences:$datastore_version"
+
+        ]
+    }
+}
