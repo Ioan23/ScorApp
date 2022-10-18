@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">scorApp</string>
-    <string name="home_screen_title">Home</string>
+    <string name="home_screen_title">Home screen view</string>
     <string name="empty_list_message">Empty list</string>
     <string name="no_scors_message">You have no scors. Please add a scor to your list</string>
     <string name="select">Select</string>
     <string name="available_scors">Available scors</string>
     <string name="hint">Go to the next step</string>
     <string name="title">Title</string>
+    <string name="score_screen">Score screen view</string>
     <string name="description">Description</string>
     <string name="date">Date</string>
     <string name="scaffold">Scaffold</string>

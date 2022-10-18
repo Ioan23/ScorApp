@@ -49,11 +49,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.xaivision.scorapp.R
-import com.xaivision.scorapp.personaldata.viewmodel.BackActionClick
-import com.xaivision.scorapp.personaldata.viewmodel.InputFirstNameActionClick
-import com.xaivision.scorapp.personaldata.viewmodel.InputSecondNameActionClick
-import com.xaivision.scorapp.personaldata.viewmodel.ScorViewModel
-import com.xaivision.scorapp.personaldata.viewmodel.ScorNavigation
+import com.xaivision.scorapp.personaldata.viewmodel.*
 import com.xaivision.scorapp.ui.components.BottomAppBarView
 import com.xaivision.scorapp.ui.components.TopBar
 import com.xaivision.scorapp.ui.theme.ScorAppTheme
@@ -64,12 +60,10 @@ fun ScorScreenView(
     scorNavigation: ScorNavigation,
     viewModel: ScorViewModel = hiltViewModel()
 ) {
-
-
     ScorAppTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
-            topBar = { TopBar(title = stringResource(R.string.home_screen_title)) },
+            topBar = { TopBar(title = stringResource(R.string.score_screen)) },
             bottomBar = {
                 BottomAppBarView(
                     onBackScreen = {viewModel.onAction(BackActionClick) },
@@ -89,14 +83,14 @@ fun ScorScreenView(
                             end = ScoreAppThemeO.dimens.grid_1_5,
                             bottom = padding.calculateBottomPadding()
                         ),
-                    onInputTitleChange = {viewModel.onAction(InputFirstNameActionClick(it))},
-                    onInputDescriptionChange = {viewModel.onAction(InputSecondNameActionClick(it))},
+                    onInputTitleChange = {viewModel.onAction(InputTitleActionClick(it))},
+                    onInputDescriptionChange = {viewModel.onAction(InputDescriptionActionClick(it))},
+                    onInputDateChange ={viewModel.onAction(InputDateActionClick(it))},
                     viewModel = viewModel
                 )
             }
         )
     }
-
     LaunchedEffect(null) {
         viewModel.container.sideEffectFlow.collect {
             when (it) {
@@ -115,6 +109,7 @@ fun ScorContent(
     viewModel: ScorViewModel,
     onInputTitleChange: (String) -> Unit,
     onInputDescriptionChange: (String) -> Unit,
+    onInputDateChange: (String) -> Unit,
 ) {
 
     val viewState = viewModel.container.stateFlow.collectAsState()
@@ -127,16 +122,16 @@ fun ScorContent(
     ) {
         TitleCard(
             modifier = Modifier.fillMaxWidth(),
-            title = "Please",
+            title = "Description of scor",
             content = {
 
-                val maxCharName = 40
+                val maxCharTitle = 12
                 TextField(
                     modifier = Modifier
                         .imePadding()
                         .fillMaxWidth(),
                     value = viewState.value.title,
-                    onValueChange = { if (it.length <= maxCharName) onInputTitleChange(it) },
+                    onValueChange = { if (it.length <= maxCharTitle) onInputTitleChange(it) },
                     labelText = stringResource(R.string.title),
                     helperText = "",
                     isError = false,
@@ -152,14 +147,35 @@ fun ScorContent(
                     backgroundColor = ScoreAppThemeO.colors.background
                 )
 
-                val maxCharSurName = 40
+                val maxCharDescription = 40
                 TextField(
                     modifier = Modifier
                         .imePadding()
                         .fillMaxWidth(),
                     value = viewState.value.description,
-                    onValueChange = { if (it.length <= maxCharSurName) onInputDescriptionChange(it) },
-                    labelText = "Last Name",
+                    onValueChange = { if (it.length <= maxCharDescription) onInputDescriptionChange(it) },
+                    labelText =stringResource(R.string.description),
+                    helperText = "",
+                    isError = false,
+                    keyboardOptions = KeyboardOptions(
+                        capitalization = KeyboardCapitalization.Characters,
+                        autoCorrect = false,
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(onDone = { keyboardController?.hide() }),
+                    autofillTypes = listOf(
+                        AutofillType.PersonLastName
+                    ),
+                    backgroundColor = ScoreAppThemeO.colors.background
+                )
+                val maxCharDate = 8
+                TextField(
+                    modifier = Modifier
+                        .imePadding()
+                        .fillMaxWidth(),
+                    value = viewState.value.date,
+                    onValueChange = { if (it.length <= maxCharDate) onInputDateChange(it) },
+                    labelText = stringResource(R.string.date),
                     helperText = "",
                     isError = false,
                     keyboardOptions = KeyboardOptions(
@@ -263,10 +279,7 @@ fun TextField(
                 modifier = modifier
                     .onGloballyPositioned { autofillNode.boundingBox = it.boundsInWindow() }
                     .onFocusChanged { focusState ->
-                        // Update focus state value for outline animation
                         isTextFieldFocused.value = focusState.isFocused
-
-                        // Request autofill when focused
                         if (autofill != null) {
                             if (focusState.isFocused) {
                                 autofill.requestAutofillForNode(autofillNode)
@@ -287,7 +300,6 @@ fun TextField(
                 trailingIcon = trailingIcon
             )
         }
-
         if (helperText != null) {
             Spacer(Modifier.height(1.dp))
             HelperText(
@@ -308,7 +320,6 @@ fun textFieldColors(backgroundColor: Color) =
         errorIndicatorColor = Color.Transparent,
         errorCursorColor = ScoreAppThemeO.colors.primary,
     )
-
 @Composable
 private fun HelperText(
     text: String,

@@ -34,27 +34,38 @@ class ScorViewModel @Inject constructor(
             is BackActionClick -> {
                 navigateBack()
             }
-            is InputFirstNameActionClick -> {
-                onFirsNameInput(action.input)
+            is InputTitleActionClick -> {
+                onTitleInput(action.input)
             }
-            is InputSecondNameActionClick -> {
-                onSecondNameInput(action.input)
+            is InputDateActionClick-> {
+                onDateInput(action.input)
+            }
+            is InputDescriptionActionClick -> {
+                onDescriptionScoreInput(action.input)
             }
         }
     }
 
-    fun onFirsNameInput(firstName: String) = intent {
+    fun onTitleInput(title: String) = intent {
         reduce {
             state.copy(
-                title = firstName
+                title = title
             )
         }
     }
 
-    fun onSecondNameInput(secondName: String) = intent {
+    fun onDescriptionScoreInput(description: String) = intent {
         reduce {
             state.copy(
-                description = secondName
+                description = description
+            )
+        }
+    }
+
+    fun onDateInput(date: String) = intent {
+        reduce {
+            state.copy(
+                date = date
             )
         }
     }

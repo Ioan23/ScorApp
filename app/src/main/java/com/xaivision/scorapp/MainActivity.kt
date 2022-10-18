@@ -16,15 +16,9 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 
-
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-
-
     private var navController: NavController? = null
-
 
     @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +31,6 @@ class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalAnimationApi::class)
     @Composable
-
     fun ScorApp(appNavigator: AppNavigator) {
         navController = appNavigator.navController
         val startDestination = Destination.HomeScreen.route
@@ -46,11 +39,8 @@ class MainActivity : ComponentActivity() {
             startDestination = startDestination
         ) {
             composable(route = Destination.HomeScreen.route) {
-
                 HomeScreenView(appNavigator = appNavigator)
             }
-
-
             composable(route = Destination.ScorsView.route) {
                 ScorScreenView(scorNavigation = appNavigator)
             }

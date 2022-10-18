@@ -66,7 +66,7 @@ fun HomeScreenView(
         ScorAppTheme {
             Scaffold(
                 topBar = {
-                    TopBar(title = stringResource(id = R.string.scaffold))
+                    TopBar(title = stringResource(id = R.string.home_screen_title))
                 },
                 floatingActionButton = {
                     FloatingButtonView(
@@ -83,7 +83,6 @@ fun HomeScreenView(
                 bottomBar = {
                     BottomAppBarView(
                         onBackScreen = {
-
                         },
                         onNextScreen = {
                         appNavigator.navigateToScorViewScreen()
